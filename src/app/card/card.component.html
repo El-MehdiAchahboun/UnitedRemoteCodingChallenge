@@ -1,0 +1,69 @@
+<div *ngFor="let card of cardData">
+  <div class="cards-container">
+    <nz-card [nzCover]="coverTemplate" [nzActions]="[link , forks , watchers]">
+      <nz-card-meta
+        [nzTitle]="card.name"
+        [nzDescription]="card.description"
+        [nzAvatar]="avatarTemplate"
+      >
+      </nz-card-meta>
+      <div class="repository-info">
+        <span class="stars">
+                  <button nz-button nzSize="small" nzType="primary" nzShape="round"><i nz-icon nzType="star"
+                                                                                       nzTheme="outline"></i>Stars : {{card.stargazers_count}}</button>
+        </span>
+        <span class="issues">
+                  <button nz-button nzSize="small" nzType="danger" nzShape="round"><i nz-icon nzType="issues-close"
+                                                                                      nzTheme="outline"></i>Issues : {{card.open_issues_count}}</button>
+        </span>
+        <span class="text">submitted on by {{getName(card.full_name)}}</span>
+      </div>
+
+    </nz-card>
+    <ng-template #avatarTemplate>
+      <nz-avatar [nzSrc]="card.owner.avatar_url"></nz-avatar>
+    </ng-template>
+
+    <!--<ng-template #coverTemplate>-->
+    <!--<img alt="example" [src]="d.owner.avatar_url" />-->
+    <!--</ng-template>-->
+
+    <!--<ng-template #actionEllipsis>-->
+      <!--<i nz-icon type="ellipsis" (click)="showModal(card.forks, card.watchers)"></i>-->
+    <!--</ng-template>-->
+    <ng-template #link>
+      <a [href]="card.html_url" target="_blank" nz-tooltip nzTitle="Open Repository"><i nz-icon nzType="link" nzTheme="outline"></i></a>
+    </ng-template>
+    <ng-template #forks>
+      <span nz-tooltip nzTitle="Forks">
+        <i nz-icon nzType="fork" nzTheme="outline"></i>
+        {{card.forks}}
+      </span>
+    </ng-template>
+    <ng-template #watchers>
+      <span nz-tooltip nzTitle="Watchers">
+        <i nz-icon nzType="eye" nzTheme="outline"></i>
+        {{card.watchers}}
+      </span>
+    </ng-template>
+
+  </div>
+</div>
+
+<!--<nz-modal-->
+  <!--[(nzVisible)]="isVisible"-->
+  <!--nzTitle="Modal Title"-->
+  <!--(nzOnCancel)="handleCancel()"-->
+  <!--(nzOnOk)="handleOk()"-->
+  <!--[nzOkLoading]="isOkLoading"-->
+<!--&gt;-->
+  <!--<span nz-tooltip nzTitle="Forks">-->
+    <!--<i nz-icon nzType="fork" nzTheme="outline"></i>-->
+    <!--{{forks}}-->
+  <!--</span>-->
+  <!--<span nz-tooltip nzTitle="Watchers">-->
+    <!--<i nz-icon nzType="eye" nzTheme="outline"></i>-->
+    <!--{{watchers}}-->
+  <!--</span>-->
+
+<!--</nz-modal>-->
