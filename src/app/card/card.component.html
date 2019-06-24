@@ -10,13 +10,13 @@
       <div class="repository-info">
         <span class="stars">
                   <button nz-button nzSize="small" nzType="primary" nzShape="round"><i nz-icon nzType="star"
-                                                                                       nzTheme="outline"></i>Stars : {{card.stargazers_count}}</button>
+                                                                                       nzTheme="outline"></i>Stars : {{card.stargazers_count | shortNumber}}</button>
         </span>
         <span class="issues">
                   <button nz-button nzSize="small" nzType="danger" nzShape="round"><i nz-icon nzType="issues-close"
-                                                                                      nzTheme="outline"></i>Issues : {{card.open_issues_count}}</button>
+                                                                                      nzTheme="outline"></i>Issues : {{card.open_issues_count  | shortNumber}}</button>
         </span>
-        <span class="text">submitted on by {{getName(card.full_name)}}</span>
+        <span class="text">submitted on by <span class="name">{{getName(card.full_name)}}</span></span>
       </div>
 
     </nz-card>
@@ -37,13 +37,13 @@
     <ng-template #forks>
       <span nz-tooltip nzTitle="Forks">
         <i nz-icon nzType="fork" nzTheme="outline"></i>
-        {{card.forks}}
+        {{card.forks | shortNumber}}
       </span>
     </ng-template>
     <ng-template #watchers>
       <span nz-tooltip nzTitle="Watchers">
         <i nz-icon nzType="eye" nzTheme="outline"></i>
-        {{card.watchers}}
+        {{card.watchers | shortNumber}}
       </span>
     </ng-template>
 

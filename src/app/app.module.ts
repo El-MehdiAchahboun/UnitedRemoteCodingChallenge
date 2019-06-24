@@ -11,13 +11,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NzPaginationModule } from 'ng-zorro-antd';
+import { ShortNumberPipe } from './pipes/short-number.pipe';
 
 registerLocaleData(en);
 
 @NgModule({
   declarations: [
     AppComponent,
-    CardComponent
+    CardComponent,
+    ShortNumberPipe
   ],
   imports: [
     BrowserModule,
