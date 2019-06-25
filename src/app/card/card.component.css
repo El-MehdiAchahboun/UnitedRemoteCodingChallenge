@@ -2,10 +2,26 @@ nz-card{
   width:100%;
 }
 
+.container{
+  display: block;
+  overflow: auto;
+  height: 75vh;
+  border: 1px solid lightgray;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+}
+.page-pagination{
+  background: #f1f1f1;
+  margin-top: 20px;
+  padding: 20px 0px 20px 0px;
+}
+
 .cards-container{
-  width: 80%;
-  margin-left: 10%;
-  margin-right: 10%;
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -27,4 +43,48 @@ nz-card{
   font-weight: bolder;
   color: #1890ff;
 }
+
+::ng-deep .pagination {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+  border-radius: .25rem;
+}
+
+::ng-deep li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+  /*border: 0.1px solid;*/
+  /*padding: 6px 12px 6px 12px;*/
+  /*margin: 15px 1px 15px 1px;*/
+}
+
+::ng-deep .page-link {
+  position: relative;
+  display: block;
+  padding: .5rem .75rem;
+  margin-left: -1px;
+  line-height: 1.25;
+  color: #007bff;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+::ng-deep .page-item.disabled .page-link {
+  color: #6c757d;
+  cursor: not-allowed;
+  background-color: #9dacb4;
+  border-color: #dee2e6;
+}
+
+::ng-deep .page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+
 
