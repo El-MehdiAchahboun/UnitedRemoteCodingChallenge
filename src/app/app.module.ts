@@ -12,6 +12,7 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { NzPaginationModule } from 'ng-zorro-antd';
 import { ShortNumberPipe } from './pipes/short-number.pipe';
+import {JwPaginationComponent} from 'jw-angular-pagination';
 
 registerLocaleData(en);
 
@@ -19,7 +20,8 @@ registerLocaleData(en);
   declarations: [
     AppComponent,
     CardComponent,
-    ShortNumberPipe
+    ShortNumberPipe,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule,

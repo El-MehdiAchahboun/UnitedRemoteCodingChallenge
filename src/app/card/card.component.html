@@ -1,4 +1,4 @@
-<div *ngFor="let card of cardData">
+<div *ngFor="let card of pageOfItems">
   <div class="cards-container">
     <nz-card [nzCover]="coverTemplate" [nzActions]="[link , forks , watchers]">
       <nz-card-meta
@@ -49,6 +49,8 @@
 
   </div>
 </div>
+
+<jw-pagination [items]="cardData" (changePage)="onChangePage($event)"></jw-pagination>
 
 <!--<nz-modal-->
   <!--[(nzVisible)]="isVisible"-->

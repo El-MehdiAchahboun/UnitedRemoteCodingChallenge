@@ -11,6 +11,11 @@ import {forkJoin} from 'rxjs';
 })
 export class CardComponent implements OnInit {
   cardData: any = [];
+  isVisible = false;
+  isOkLoading = false;
+  forks = null;
+  watchers = null;
+  pageOfItems: Array<any>;
 
   constructor(private repos: RepoService) {
   }
@@ -41,11 +46,6 @@ export class CardComponent implements OnInit {
     }
   }
 
-  isVisible = false;
-  isOkLoading = false;
-  forks = null;
-  watchers = null;
-
   showModal(forks, watchers): void {
     this.forks = forks;
     this.watchers = watchers;
@@ -62,6 +62,10 @@ export class CardComponent implements OnInit {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  onChangePage(pageOfItems: Array<any>){
+    this.pageOfItems = pageOfItems;
   }
 
 
