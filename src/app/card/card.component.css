@@ -50,6 +50,17 @@ nz-card{
 .repository-info{
   margin: 20px 5px 5px 20px;
 }
+.repository-dates{
+  display: flex;
+  justify-content: space-around;
+}
+
+.repository-dates > span{
+  border: 1px solid lightgray;
+  padding: 4px 10px 4px 10px;
+  border-radius: 14px;
+  background: aliceblue;
+}
 
 .stars, .issues{
   margin: 5px 5px 5px 5px;
