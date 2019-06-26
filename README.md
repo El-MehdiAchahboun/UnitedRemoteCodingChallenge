@@ -1,6 +1,7 @@
 # GitHubRepos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+The goal is to implement a webapp that will list the most starred Github repositories that were created in the last 30 days. 
 
 ## Development server
 
