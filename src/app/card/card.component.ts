@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {RepoService} from '../repo.service';
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
-import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-card',
@@ -11,10 +10,6 @@ import {forkJoin} from 'rxjs';
 })
 export class CardComponent implements OnInit {
   cardData: any = [];
-  // isVisible = false;
-  // isOkLoading = false;
-  // forks = null;
-  // watchers = null;
   indexOfPage: number;
   isLoading: boolean;
 
@@ -29,17 +24,6 @@ export class CardComponent implements OnInit {
 
       this.isLoading = false;
     });
-
-
-    // forkJoin(
-    //   ..._.map(_.range(34), i => this.repos.getRepos(i+1).pipe(map((item:any) => item.items)))
-    // ).subscribe( (d) => {
-    //   console.log(d)
-    //   _.forEach(d, arr => {
-    //     this.cardData= _.concat(this.cardData, arr)
-    //   })
-    //   console.log(this.cardData)
-    // })
   }
 
   getName(str) {
@@ -51,24 +35,6 @@ export class CardComponent implements OnInit {
       return '';
     }
   }
-
-  // showModal(forks, watchers): void {
-  //   this.forks = forks;
-  //   this.watchers = watchers;
-  //   this.isVisible = true;
-  // }
-
-  // handleOk(): void {
-  //   this.isOkLoading = true;
-  //   setTimeout(() => {
-  //     this.isVisible = false;
-  //     this.isOkLoading = false;
-  //   }, 1500);
-  // }
-  //
-  // handleCancel(): void {
-  //   this.isVisible = false;
-  // }
 
   onChangePage(paginationIndex: number){
     this.isLoading = true;

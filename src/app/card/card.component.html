@@ -17,7 +17,7 @@
     <ng-template #notLoading>
       <div *ngFor="let card of cardData">
         <div class="cards-container">
-          <nz-card [nzCover]="coverTemplate" [nzActions]="[link , forks , watchers]">
+          <nz-card [nzActions]="[link , forks , watchers]">
             <nz-card-meta
               [nzTitle]="card.name"
               [nzDescription]="card.description"
@@ -46,13 +46,6 @@
             <nz-avatar [nzSrc]="card.owner.avatar_url"></nz-avatar>
           </ng-template>
 
-          <!--<ng-template #coverTemplate>-->
-          <!--<img alt="example" [src]="d.owner.avatar_url" />-->
-          <!--</ng-template>-->
-
-          <!--<ng-template #actionEllipsis>-->
-          <!--<i nz-icon type="ellipsis" (click)="showModal(card.forks, card.watchers)"></i>-->
-          <!--</ng-template>-->
           <ng-template #link>
             <a [href]="card.html_url" target="_blank" nz-tooltip nzTitle="Open Repository"><i nz-icon nzType="link"
                                                                                               nzTheme="outline"></i></a>
@@ -85,21 +78,3 @@
   </div>
 </div>
 
-
-<!--<nz-modal-->
-<!--[(nzVisible)]="isVisible"-->
-<!--nzTitle="Modal Title"-->
-<!--(nzOnCancel)="handleCancel()"-->
-<!--(nzOnOk)="handleOk()"-->
-<!--[nzOkLoading]="isOkLoading"-->
-<!--&gt;-->
-<!--<span nz-tooltip nzTitle="Forks">-->
-<!--<i nz-icon nzType="fork" nzTheme="outline"></i>-->
-<!--{{forks}}-->
-<!--</span>-->
-<!--<span nz-tooltip nzTitle="Watchers">-->
-<!--<i nz-icon nzType="eye" nzTheme="outline"></i>-->
-<!--{{watchers}}-->
-<!--</span>-->
-
-<!--</nz-modal>-->
