@@ -36,6 +36,7 @@
               <span class="text">submitted on <span class="name">{{card.created_at | date:'short'}}</span> by <span class="name">{{getName(card.full_name)}}</span></span>
             </div>
             <div class="repository-dates">
+              <span *ngIf="card.language !== null && card.language !== '' " class="text">Language : <span class="name">{{card.language}}</span></span>
               <span class="text">Created at : <span class="name">{{card.created_at | date:'short'}}</span></span>
               <span class="text">Uploaded at : <span class="name">{{card.updated_at | date:'short'}}</span></span>
               <span class="text">Pushed at : <span class="name">{{card.pushed_at | date:'short'}}</span></span>
