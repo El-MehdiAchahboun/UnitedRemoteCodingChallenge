@@ -11,25 +11,33 @@ import {forkJoin} from 'rxjs';
 })
 export class CardComponent implements OnInit {
   cardData: any = [];
-  isVisible = false;
-  isOkLoading = false;
-  forks = null;
-  watchers = null;
-  pageOfItems: Array<any>;
+  // isVisible = false;
+  // isOkLoading = false;
+  // forks = null;
+  // watchers = null;
+  indexOfPage: number;
+  isLoading: boolean;
 
   constructor(private repos: RepoService) {
   }
 
   ngOnInit() {
+    this.isLoading = true;
     this.repos.getRepos().pipe(map((item: any) => item.items)).subscribe(data => {
       this.cardData = data;
       console.log(this.cardData);
+
+      this.isLoading = false;
     });
+
+
     // forkJoin(
-    //   this.repos.getRepos().pipe(map((item:any) => item.items)),
-    //   this.repos.getRepos(2).pipe(map((item:any)=> item.items))
-    // ).subscribe( ([d1,d2]) => {
-    //   this.cardData = [...d1,...d2];
+    //   ..._.map(_.range(34), i => this.repos.getRepos(i+1).pipe(map((item:any) => item.items)))
+    // ).subscribe( (d) => {
+    //   console.log(d)
+    //   _.forEach(d, arr => {
+    //     this.cardData= _.concat(this.cardData, arr)
+    //   })
     //   console.log(this.cardData)
     // })
   }
@@ -37,35 +45,48 @@ export class CardComponent implements OnInit {
   getName(str) {
     let i = str.indexOf('/');
     if (i > 0) {
-      let name = str.slice(0, i)
-      // console.log(name);
-      return name;
+      return str.slice(0, i);
 
     } else {
       return '';
     }
   }
 
-  showModal(forks, watchers): void {
-    this.forks = forks;
-    this.watchers = watchers;
-    this.isVisible = true;
+  // showModal(forks, watchers): void {
+  //   this.forks = forks;
+  //   this.watchers = watchers;
+  //   this.isVisible = true;
+  // }
+
+  // handleOk(): void {
+  //   this.isOkLoading = true;
+  //   setTimeout(() => {
+  //     this.isVisible = false;
+  //     this.isOkLoading = false;
+  //   }, 1500);
+  // }
+  //
+  // handleCancel(): void {
+  //   this.isVisible = false;
+  // }
+
+  onChangePage(paginationIndex: number){
+    this.isLoading = true;
+    console.log('isLoading before : ',this.isLoading)
+
+    this.indexOfPage = paginationIndex;
+    console.log('Index Of Page : ',this.indexOfPage);
+
+    let fetchRepos= this.repos.getRepos(this.indexOfPage).pipe(map((item: any) => item.items)).subscribe(data => {
+      this.cardData = data;
+      this.isLoading = false;
+      console.log('isLoading after : ',this.isLoading)
+      fetchRepos.unsubscribe();
+    });
   }
 
-  handleOk(): void {
-    this.isOkLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isOkLoading = false;
-    }, 1500);
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-  }
-
-  onChangePage(pageOfItems: Array<any>){
-    this.pageOfItems = pageOfItems;
+  skeletonRepetition(n: number): any[] {
+    return Array(n);
   }
 
 

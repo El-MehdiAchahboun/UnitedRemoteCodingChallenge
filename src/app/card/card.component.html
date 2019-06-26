@@ -1,79 +1,105 @@
 <div class="page-content">
   <div class="container">
-    <div *ngFor="let card of pageOfItems" #divTarget>
-      <div class="cards-container">
-        <nz-card [nzCover]="coverTemplate" [nzActions]="[link , forks , watchers]">
-          <nz-card-meta
-            [nzTitle]="card.name"
-            [nzDescription]="card.description"
-            [nzAvatar]="avatarTemplate"
-          >
-          </nz-card-meta>
-          <div class="repository-info">
+
+    <div class="loading-spin" *ngIf="isLoading; else notLoading">
+      <ng-template #indicatorTemplate>
+        <i nz-icon [nzType]="'loading'" style="font-size: 50px; color: #a0a0a0;"></i>
+      </ng-template>
+
+      <div class="spinner" *ngFor="let item of skeletonRepetition(3)">
+        <nz-spin nzTip="Loading ..." [nzIndicator]="indicatorTemplate">
+          <nz-skeleton [nzAvatar]="true" [nzParagraph]="{ rows: 2 }" [nzActive]="true"></nz-skeleton>
+        </nz-spin>
+      </div>
+
+    </div>
+
+    <ng-template #notLoading>
+      <div *ngFor="let card of cardData">
+        <div class="cards-container">
+          <nz-card [nzCover]="coverTemplate" [nzActions]="[link , forks , watchers]">
+            <nz-card-meta
+              [nzTitle]="card.name"
+              [nzDescription]="card.description"
+              [nzAvatar]="avatarTemplate"
+            >
+            </nz-card-meta>
+            <div class="repository-info">
         <span class="stars">
                   <button nz-button nzSize="small" nzType="primary" nzShape="round"><i nz-icon nzType="star"
                                                                                        nzTheme="outline"></i>Stars : {{card.stargazers_count | shortNumber}}</button>
         </span>
-            <span class="issues">
+              <span class="issues">
                   <button nz-button nzSize="small" nzType="danger" nzShape="round"><i nz-icon nzType="issues-close"
                                                                                       nzTheme="outline"></i>Issues : {{card.open_issues_count  | shortNumber}}</button>
         </span>
-            <span class="text">submitted on by <span class="name">{{getName(card.full_name)}}</span></span>
-          </div>
+              <span class="text">submitted on <span class="name">{{card.created_at | date:'short'}}</span> by <span class="name">{{getName(card.full_name)}}</span></span>
+            </div>
+            <div class="repository-dates">
+              <span class="text">Created at : <span class="name">{{card.created_at | date:'short'}}</span></span>
+              <span class="text">Uploaded at : <span class="name">{{card.updated_at | date:'short'}}</span></span>
+              <span class="text">Pushed at : <span class="name">{{card.pushed_at | date:'short'}}</span></span>
+            </div>
 
-        </nz-card>
-        <ng-template #avatarTemplate>
-          <nz-avatar [nzSrc]="card.owner.avatar_url"></nz-avatar>
-        </ng-template>
+          </nz-card>
+          <ng-template #avatarTemplate>
+            <nz-avatar [nzSrc]="card.owner.avatar_url"></nz-avatar>
+          </ng-template>
 
-        <!--<ng-template #coverTemplate>-->
-        <!--<img alt="example" [src]="d.owner.avatar_url" />-->
-        <!--</ng-template>-->
+          <!--<ng-template #coverTemplate>-->
+          <!--<img alt="example" [src]="d.owner.avatar_url" />-->
+          <!--</ng-template>-->
 
-        <!--<ng-template #actionEllipsis>-->
-        <!--<i nz-icon type="ellipsis" (click)="showModal(card.forks, card.watchers)"></i>-->
-        <!--</ng-template>-->
-        <ng-template #link>
-          <a [href]="card.html_url" target="_blank" nz-tooltip nzTitle="Open Repository"><i nz-icon nzType="link" nzTheme="outline"></i></a>
-        </ng-template>
-        <ng-template #forks>
+          <!--<ng-template #actionEllipsis>-->
+          <!--<i nz-icon type="ellipsis" (click)="showModal(card.forks, card.watchers)"></i>-->
+          <!--</ng-template>-->
+          <ng-template #link>
+            <a [href]="card.html_url" target="_blank" nz-tooltip nzTitle="Open Repository"><i nz-icon nzType="link"
+                                                                                              nzTheme="outline"></i></a>
+          </ng-template>
+          <ng-template #forks>
       <span nz-tooltip nzTitle="Forks">
         <i nz-icon nzType="fork" nzTheme="outline"></i>
         {{card.forks | shortNumber}}
       </span>
-        </ng-template>
-        <ng-template #watchers>
+          </ng-template>
+          <ng-template #watchers>
       <span nz-tooltip nzTitle="Watchers">
         <i nz-icon nzType="eye" nzTheme="outline"></i>
         {{card.watchers | shortNumber}}
       </span>
-        </ng-template>
+          </ng-template>
 
+        </div>
       </div>
-      <!--<nz-back-top [nzTarget]="divTarget"></nz-back-top>-->
-    </div>
+    </ng-template>
+
   </div>
 
+
   <div class="page-pagination">
-    <jw-pagination [items]="cardData" (changePage)="onChangePage($event)"></jw-pagination>
+    <div class="pagination-buttons">
+      <nz-pagination [nzPageIndex]="1" [nzPageSize]="1" [nzTotal]="34"
+                     (nzPageIndexChange)="onChangePage($event)"></nz-pagination>
+    </div>
   </div>
 </div>
 
 
 <!--<nz-modal-->
-  <!--[(nzVisible)]="isVisible"-->
-  <!--nzTitle="Modal Title"-->
-  <!--(nzOnCancel)="handleCancel()"-->
-  <!--(nzOnOk)="handleOk()"-->
-  <!--[nzOkLoading]="isOkLoading"-->
+<!--[(nzVisible)]="isVisible"-->
+<!--nzTitle="Modal Title"-->
+<!--(nzOnCancel)="handleCancel()"-->
+<!--(nzOnOk)="handleOk()"-->
+<!--[nzOkLoading]="isOkLoading"-->
 <!--&gt;-->
-  <!--<span nz-tooltip nzTitle="Forks">-->
-    <!--<i nz-icon nzType="fork" nzTheme="outline"></i>-->
-    <!--{{forks}}-->
-  <!--</span>-->
-  <!--<span nz-tooltip nzTitle="Watchers">-->
-    <!--<i nz-icon nzType="eye" nzTheme="outline"></i>-->
-    <!--{{watchers}}-->
-  <!--</span>-->
+<!--<span nz-tooltip nzTitle="Forks">-->
+<!--<i nz-icon nzType="fork" nzTheme="outline"></i>-->
+<!--{{forks}}-->
+<!--</span>-->
+<!--<span nz-tooltip nzTitle="Watchers">-->
+<!--<i nz-icon nzType="eye" nzTheme="outline"></i>-->
+<!--{{watchers}}-->
+<!--</span>-->
 
 <!--</nz-modal>-->

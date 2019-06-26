@@ -15,16 +15,38 @@ nz-card{
 .page-pagination{
   background: #f1f1f1;
   margin-top: 20px;
+  /*padding-right: auto;*/
+  /*padding-left: auto;*/
   padding: 20px 0px 20px 0px;
+}
+.pagination-buttons{
+  margin-left: auto;
+  margin-right: auto;
+  width: 40vw;
 }
 
 .cards-container{
   width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
   margin-bottom: 10px;
 }
+.loading-spin{
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.spinner{
+  padding: 10px 10px 0px 10px;
+  border: 1px solid lightgray;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
 .repository-info{
   margin: 20px 5px 5px 20px;
 }
