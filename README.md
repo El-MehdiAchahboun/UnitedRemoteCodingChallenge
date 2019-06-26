@@ -1,3 +1,9 @@
+<a href="https://github.com/El-MehdiAchahboun/UnitedRemoteCodingChallenge/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/El-MehdiAchahboun/UnitedRemoteCodingChallenge.svg"></a>
+
+<a href="https://github.com/El-MehdiAchahboun/UnitedRemoteCodingChallenge/network"><img alt="GitHub forks" src="https://img.shields.io/github/forks/El-MehdiAchahboun/UnitedRemoteCodingChallenge.svg"></a>
+
+<a href="https://github.com/El-MehdiAchahboun/UnitedRemoteCodingChallenge/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/El-MehdiAchahboun/UnitedRemoteCodingChallenge.svg"></a>
+
 # GitHubRepos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
